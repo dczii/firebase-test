@@ -27,17 +27,16 @@ angular.module('scheduleApp', ['firebase'])
 			    fb.$set({
 			      monday: {
 			        name: 'Monday',
-			        id: 1,
 			        slots: {
 			          0900: {
 			            time: '9:00am',
 			            booked: false,
-			            id: 1
+			            approved: false
 			          },
 			          0110: {
 			            time: '11:00am',
 			            booked: false,
-			            id: 2
+			            approved: false
 			          }
 			        }
 			      },
@@ -47,11 +46,13 @@ angular.module('scheduleApp', ['firebase'])
 			        slots: {
 			          0900: {
 			            time: '9:00am',
-			            booked: false
+			            booked: false,
+			            approved: false
 			          },
 			          0110: {
 			            time: '11:00am',
-			            booked: false
+			            booked: false,
+			            approved: false
 			          }
 			        }
 			      },
@@ -60,11 +61,13 @@ angular.module('scheduleApp', ['firebase'])
 			        slots: {
 			          0900: {
 			            time: '9:00am',
-			            booked: false
+			            booked: false,
+			            approved: false
 			          },
 			          0110: {
 			            time: '11:00am',
-			            booked: false
+			            booked: false,
+			            approved: false
 			          }
 			        }
 			      },
