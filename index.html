@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Scheduling</title>
+
+    <!-- CSS -->
+    <!-- load Bootstrap and custom style.css -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/journal/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JS -->
+    <!-- load Angular, Firebase, Firebase Angular Library, and custom app.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<div class="container" ng-app="scheduleApp" ng-controller="mainController">
+  
+  <div class="page-header text-center">       
+    <h1>Schedule City</h1>        
+  </div>
+
+  <!-- were doing one day with 1 time slot for simplicity -->
+  <!-- we'll use angular's ng-repeat in a bit to get the other days and times -->
+  <div class="row times">
+   
+  <div class="col-xs-4 text-center" ng-repeat="day in days | filter: 'Monday'"> 
+            
+    <h2>{{ day.name }}</h2>
+    
+    <div class="time-slot" ng-repeat="slot in day.slots" ng-init="approve=false">     
+
+      <input type="checkbox" id="{{ day.name }}-{{ $index }}" ng-model="approve" ng-disabled="slot.booked"> 
+      <!-- onchange="window.location.href='approval.html'" -->
+
+      <label for="{{ day.name }}-{{ $index }}" >{{ slot.time }}<br>
+        <span ng-if="slot.booked">Booked</span>
+        <span ng-if="!slot.booked" ng-hide="approve">Available</span>
+        <span ng-if="approve" ng-show="!slot.booked">Reject</span>
+      </label>
+
+            <span ng-if="!slot.booked">
+            <span ng-if="approve">
+            <input type="checkbox" ng-model="slot.booked" id="btn">
+            <label for="btn">Approve?</label>
+            
+            </span>
+        </span>
+      </div>
+    </div>       
+    
+  </div>
+
+
+
+  <p class="text-center">    
+    <a href="#" class="btn btn-primary" ng-click="reset()">Reset</a>
+  </p>
+
+</div>  
+</body>
+</html>
