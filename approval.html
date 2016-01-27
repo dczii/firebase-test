@@ -33,13 +33,15 @@
     
       <div class="time-slot" ng-repeat="slot in day.slots">     
 
-        <input type="checkbox" id="{{ day.name }}-{{ $index }}" ng-model="slot.booked" ng-if="slot.approved != 0" ng-disabled="slot.booked"> 
+        <input type="checkbox" id="{{ day.name }}-{{ $index }}" ng-model="slot.booked" ng-if="slot.approved != 0" ng-disabled="slot.booked" /> 
           <label for="{{ day.name }}-{{ $index }}" >{{ slot.time }}<br>
-            <span ng-if="!slot.booked">Pending Approval<br>Approve?</span>
+            <span ng-if="!slot.booked" ng-hide="slot.rejected != 0">Pending Approval<br>Approve?</span>
             <span ng-if="slot.booked != 0">Booked</span>
           </label>
+          <a href="#" class="btn btn-primary" ng-click="slot.approved=false" ng-if="slot.approved != 0" ng-disabled="slot.booked">Reject</a>
 
       </div>
+
     </div>       
     
   </div>

@@ -73,7 +73,6 @@ angular.module('scheduleApp', ['firebase'])
 			      },
 			    });    
 
-
 			    
 			  };
 
